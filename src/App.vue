@@ -1,50 +1,47 @@
 <template>
-  <div class="app-container">
-    <div class="side-nav">
-      <NavBar/>
-    </div>
-    <div class="content">
+    <main id="app">
       <router-view/>
-    </div>
-    
-  </div>
+    </main>
 </template>
 
 
 <script>
-  import NavBar from '@/components/NavBar.vue'
 
   export default {
-  name: 'App',
-  components: {
-    NavBar
+    name: 'App',
+    components: {
+
+    },
+    data(){
+      return{
+        
+
+      }
     }
   }
+
 </script>
 
-<style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500;600;700&display=swap');
+
   #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    height: 100%;
-  }
-  html, body {
+    height: 100vh;
+    overflow: hidden;
     margin: 0;
-    height: 100%;
+    font-family: 'Lexend', sans-serif;
   }
   a {
     text-decoration: none;
     cursor: pointer;
   }
-
+  /*
   .app-container {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    height: 100%;
+
     overflow: hidden;
 
     background: linear-gradient(183.42deg, #235E65 4.92%, #0F282B 98.39%);
@@ -53,12 +50,6 @@
     width: 100px;
     height: 100%;
   }
-  .content {
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-
-    background: #EEEEEE;
-    border-radius: 30px 0px 0px 30px;
-  }
+  */
+  
 </style>
