@@ -1,15 +1,15 @@
 <template>
     <div class="nav-bar">
         <router-link to="/#" class="nav-logo">
-            <i class="bi bi-heart-fill"></i>
+            <img src="../assets/logo.png" alt="Healthspace Logo" style="max-width: 60px;">
         </router-link>
         <div class="nav-select">
             <router-link to="/#" active-class="nav-btn-active" class="nav-btn">
-                <i class="bi bi-house-fill"></i>
+                <i class="bi bi-house"></i>
             </router-link>
 
             <router-link to="/about" active-class="nav-btn-active" class="nav-btn">
-                <i class="bi bi-clipboard-fill"></i>
+                <i class="bi bi-clipboard"></i>
             </router-link>
 
             <router-link to="/about" active-class="nav-btn-active" class="nav-btn">
@@ -17,11 +17,11 @@
             </router-link>
 
             <router-link to="/about" active-class="nav-btn-active" class="nav-btn">
-                <i class="bi bi-person-fill"></i>
+                <i class="bi bi-person"></i>
             </router-link>
 
             <router-link to="/about" active-class="nav-btn-active" class="nav-btn">
-                <i class="bi bi-gear-fill"></i>
+                <i class="bi bi-gear"></i>
             </router-link>
         </div>
         <div class="nav-end">
@@ -44,13 +44,16 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
+    height: 800px;
+    width: 110px;
+    background: #E2E2E2;
 }
 .nav-logo{
-    color: white;
+    color: #236067;
     margin-top: 30px;
     font-size: 40px;
     flex-grow: 1;
+    text-align: center;
 }
 .nav-select{
     display: flex;
@@ -73,8 +76,9 @@ export default {
     height: 50px;
     width: 50px;
     margin: 10px;
-    color: white;
-    font-size: 20px;
+    color: #236067;
+    font-size: 25px;
+    font-weight: 300;
 
     cursor: pointer;
     transition: 300ms;
@@ -84,10 +88,10 @@ export default {
     width: 90px;
     padding-right: 30px;
     background-color: #EEEEEE;
-    color: #235E65;
+    color: #236067;
 }
 .nav-btn:hover{
-    background-color:#235E65;
-    color: white;
+    background-color:#236067;
+    color: #EEEEEE;
 }
 </style>

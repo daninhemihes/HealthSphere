@@ -1,27 +1,33 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Layout from '../views/Layout.vue'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
     name: 'login',
     component: LoginView
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: HomeView
+    path: '/',
+    name: 'Layout',
+    component: Layout,
+    children: [
+      {
+        path: 'home',
+        component: HomeView,
+      },
+      {
+        path: 'profile',
+        component: HomeView,
+      },
+    ],
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes
 })
 
