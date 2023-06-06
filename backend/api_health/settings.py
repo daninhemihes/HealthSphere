@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'api_health.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Health_Space',
+        'NAME': 'hlth_space',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',

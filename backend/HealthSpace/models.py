@@ -1,10 +1,10 @@
 from django.db import models
 
 # Create your models here.
-class TbUser(models.Model):
-    username = models.CharField(max_length=24, unique=True)
-    email = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
+class tbUser(models.Model):
+    username = models.CharField(max_length=24, unique=True, null=False)
+    email = models.CharField(max_length=50, unique=True, null=False)
+    password = models.CharField(max_length=255, null=False)
 
 class tbPerson(models.Model):
     username = models.ForeignKey('TbUser', on_delete=models.PROTECT)

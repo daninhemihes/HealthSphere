@@ -1,6 +1,9 @@
 from django.urls import path
-from HealthSpace.api_views.inicial import HelloAPI
+from HealthSpace.api_views.login import LoginUser
+from HealthSpace.api_views.register import RegisterUser
 
 urlpatterns = [
-    path('inicial/', HelloAPI.as_view()),
+    path('login/', LoginUser.as_view()),
+    path('register/', RegisterUser.as_view()),
+
 ]
