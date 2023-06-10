@@ -11,6 +11,9 @@ class InfoPerson(APIView):
         return Response(dados_usuario, status=200)
 
     def post(self, request):
+        print("request", request.data)
+        if tbPerson.objects.filter(username=request.data["username"]):
+            return Response({"error":"Já possui registro"}, status=400)
         data = request.data
         serializer = PersonSerializer(data=data)
         if serializer.is_valid():

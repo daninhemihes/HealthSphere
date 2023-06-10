@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
 
     'HealthSpace',
     'rest_framework',
+    'rest_framework_recursive',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'api_health.urls'
@@ -79,7 +82,7 @@ WSGI_APPLICATION = 'api_health.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hlth_space',
+        'NAME': 'health_space',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',
@@ -129,6 +132,12 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#Liberação do front acessar a API sem erro de CORS
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
+#IP que o front esta usando
+CORS_ORIGIN_WHITELIST = ['http://localhost:8080', 'http://localhost:5173'] 
 
 #pra receber dados do front
 REST_FRAMEWORK = {

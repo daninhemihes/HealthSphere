@@ -14,17 +14,22 @@ class PersonSerializer(serializers.ModelSerializer):
         model = tbPerson
         fields = '__all__'
 
-class MedicalConditions(serializers.ModelSerializer):
+class MedicalConditionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = tbMedicalConditions
         fields = '__all__'
 
-class AllergiesReactions(serializers.ModelSerializer):
+class AllergiesReactionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = tbAllergiesReactions
         fields = '__all__'
 
-class EmergencyContact(serializers.ModelSerializer):
+class EmergencyContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = tbEmergencyContact
+        fields = '__all__'
+
+class QRcodeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = tbQRcode
         fields = '__all__'
