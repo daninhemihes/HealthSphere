@@ -13,21 +13,21 @@ class LoginUser(APIView):
     
     def post(self, request):
         print(request.data)
-        email = request.data['email']
+        # email = request.data['email']
         usuario = request.data['username']
         senha = request.data['password']
 
-        if email:
-            # user_filtered = tbUser.objects.filter(email=email)
-            user_filtered = get_object_or_404(tbUser, email=email)
-            if compare_password(senha, user_filtered.password):
-                return Response(user_filtered.username, status=200)
-            else: 
-                return Response(False, status=203)
+        # if email:
+        #     # user_filtered = tbUser.objects.filter(email=email)
+        #     user_filtered = get_object_or_404(tbUser, email=email)
+        #     if compare_password(senha, user_filtered.password):
+        #         return Response(user_filtered.username, status=200)
+        #     else: 
+        #         return Response(False, status=203)
             
-        else:
-            user_filtered = get_object_or_404(tbUser, username=usuario)
-            if compare_password(senha, user_filtered.password):
-                return Response(user_filtered.username, status=200)
-            else: 
-                return Response(False, status=203)
+        # else:
+        user_filtered = get_object_or_404(tbUser, username=usuario)
+        if compare_password(senha, user_filtered.password):
+            return Response(user_filtered.username, status=200)
+        else: 
+            return Response(False, status=203)
