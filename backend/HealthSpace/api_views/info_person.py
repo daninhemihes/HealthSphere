@@ -9,7 +9,7 @@ class InfoPerson(APIView):
     def get(self, request, username):
         tabela_person = get_object_or_404(tbPerson, username=username)
         returno_dados = {
-            'usuario': tabela_person.username.pk,
+            'username': tabela_person.username.pk,
             'firstName':tabela_person.firstName,
             'lastName':tabela_person.lastName,
             'sex':tabela_person.sex,
