@@ -6,9 +6,27 @@ from HealthSpace.serializer import PersonSerializer
 
 
 class InfoPerson(APIView):
-    def get(self, request, pk):
-        dados_usuario = get_object_or_404(tbPerson, pk=pk)
-        return Response(dados_usuario, status=200)
+    def get(self, request, username):
+        tabela_person = get_object_or_404(tbPerson, username=username)
+        returno_dados = {
+            'usuario': tabela_person.username.pk,
+            'firstName':tabela_person.firstName,
+            'lastName':tabela_person.lastName,
+            'sex':tabela_person.sex,
+            'birthDate':tabela_person.birthDate,
+            'bloodType':tabela_person.bloodType,
+            'organDonor':tabela_person.organDonor,
+            'weight':tabela_person.weight,
+            'height':tabela_person.height,
+            'maritalStatus':tabela_person.maritalStatus,
+            'color':tabela_person.color,
+            'nationality':tabela_person.nationality,
+            'occupation':tabela_person.occupation,
+            'address':tabela_person.address,
+            'phone':tabela_person.phone,
+            'primaryLanguague':tabela_person.primaryLanguague
+        }
+        return Response(returno_dados, status=200)
 
     def post(self, request):
         print("request", request.data)
