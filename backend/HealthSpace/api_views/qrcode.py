@@ -47,3 +47,8 @@ class QRcode(APIView):
                 return Response(status=200)
         return Response(serializer.errors, status=400)
 
+    def delete(self, request):
+        QRcode = get_object_or_404(tbQRcode, username=request.data["username"])
+        QRcode.delete()
+        
+        return Response({'mesage':'Deletado com sucesso!'}, status=200)
