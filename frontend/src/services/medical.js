@@ -7,7 +7,6 @@ class MedicalService {
             const response = await axios.get(`${API_URL}/condicoes_medical/${username}/`, {
                 username: username
             });
-            console.log(response)
             return response
         } catch (error) {
             console.error('Error while getting medical condition: ', error);
@@ -19,7 +18,6 @@ class MedicalService {
             const response = await axios.get(`${API_URL}/reacoes_alergicas/${username}/`, {
                 username: username
             });
-            console.log(response)
             return response
         } catch (error) {
             console.error('Error while getting medical condition: ', error);

@@ -5,6 +5,7 @@ import LoginView from '../views/LoginView.vue'
 import ProfileFormView from '../views/ProfileFormView.vue'
 import ContactsView from '../views/ContactsView.vue'
 import MedicalView from '../views/MedicalView.vue'
+import MedicalRecordView from '../views/MedicalRecordView.vue'
 
 const routes = [
   {
@@ -32,6 +33,10 @@ const routes = [
       {
         path: 'medical',
         component: MedicalView
+      },
+      {
+        path: 'medicalrecord',
+        component: MedicalRecordView
       }
     ],
   }

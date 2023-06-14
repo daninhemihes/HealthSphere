@@ -1,50 +1,35 @@
 <template>
     <div class="container">
         <div class="text">
-            Alergias e Condições Médicas
+            Ficha Médica
         </div>
-        <form action="#">
-            <div class="form-row">
-                    <div class="input-data">
-                        <input type="text" v-model="newCondition.medicalCondition" required>
-                        <div class="underline"></div>
-                        <label for="">Condição Médica</label>
-                    </div>
-                    <div class="input-data">
-                        <input type="text" v-model="newCondition.note" required>
-                        <div class="underline"></div>
-                        <label for="">Notas</label>
-                    </div>
-                    <div class="input-data">
-                        <div class="inner"></div>
-                        <input type="submit" value="Salvar Condição" @click="saveCondition()">
-                    </div>
-            </div>
-        </form>
-        <form action="#">
-            <div class="form-row">
-                    <div class="input-data">
-                        <input type="text" v-model="newAllergie.allergiesReactions" required>
-                        <div class="underline"></div>
-                        <label for="">Alergia</label>
-                    </div>
-                    <div class="input-data">
-                        <input type="text" v-model="newAllergie.notes" required>
-                        <div class="underline"></div>
-                        <label for="">Notas</label>
-                    </div>
-                    <div class="input-data">
-                        <div class="inner"></div>
-                        <input type="submit" value="Salvar Alergia" @click="saveAllergie()">
-                    </div>
-            </div>
-        </form>
+
+        <table>
+          <tbody>
+            <tr>
+              <td colspan="2">Nome completo: {{ profileInfo.firstName }} {{ profileInfo.lastName }}</td>
+              <td>Data de Nascimento: {{ profileInfo.birthDate }}</td>
+              <td>Sexo: {{ profileInfo.sex == 'F' ? 'Feminino' : 'Masculino' }}</td>
+            </tr>
+            <tr>
+              <td>Estado Civil: {{ profileInfo.maritalStatus }}</td>
+              <td>Cor: {{ profileInfo.color }}</td>
+              <td>Nacionalidade: {{ profileInfo.nationality }}</td>
+              <td>Linguagem Primária: {{ profileInfo.primaryLanguague }}</td>
+            </tr>
+            <tr>
+              <td>Profissão: {{ profileInfo.occupation }}</td>
+              <td>Telefone: {{ profileInfo.phone }}</td>
+              <td colspan="2">Endereço: {{ profileInfo.address }}</td>
+            </tr>
+          </tbody>
+        </table>
+
         <div class="seus-contatos">
             <table>
                 <thead>
                     <tr>
-                        <th>Condição</th>
-                        <th>Notas</th>
+                        <th colspan="2">Condições Médicas</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,8 +42,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Alergia</th>
-                        <th>Notas</th>
+                        <th colspan="2">Alergias</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,68 +56,70 @@
       </div>
 </template>
 
-<script>  
+<script>
+import ProfileService from '../services/profile'
 import MedicalService from '../services/medical'
 
 export default {
-    name: 'Medical',
+    name: 'MedicalRecord',
     components: {
     
 },
 data(){
     return{
-        newCondition:{
-            username: localStorage.getItem("username"),
-            medicalCondition: '',
-            note: ''
-        },
-        newAllergie:{
-            username: localStorage.getItem("username"),
-            allergiesReactions: '',
-            notes: ''
-        },
         conditions: [],
-        allergies: []
+        allergies: [],
+        profileInfo: {
+          username: localStorage.getItem("username"),
+          firstName : '',
+          lastName : '',
+          sex: '',
+          birthDate: '',
+          bloodType: '',
+          organDonor: false,
+          weight: 0.0,
+          height: 0.0,
+          maritalStatus : '',
+          color : '',
+          nationality : '',
+          occupation : '',
+          address : '',
+          phone : '',
+          primaryLanguague: ''
+        }
     }
 },
 async mounted() {
-    await this.getCondition()
-    await this.getAllergies()
-},
-methods:{
+    this.getProfile()
+    this.getCondition()
+    this.getAllergies()
+  },
+  methods:{
     async getCondition(){
-        try{
+      try{
             const conditions = await MedicalService.getConditions(localStorage.getItem("username"))
             this.conditions = conditions.data
             console.log(this.conditions)
-        } catch (error) {
+          } catch (error) {
             console.log("There was an error while getting conditions: " + error)
-        }
+          }
     },
     async getAllergies(){
-        try{
+      try{
             const allergies = await MedicalService.getAllergies(localStorage.getItem("username"))
             this.allergies = allergies.data
             console.log(this.allergies)
         } catch (error) {
-            console.log("There was an error while getting allergies: " + error)
+          console.log("There was an error while getting allergies: " + error)
         }
-    },
-    async saveCondition(){
-        try{
-            await MedicalService.setCondition(localStorage.getItem("username"), this.newCondition)
-            alert('Condição salva!')
-        } catch (error) {
-            console.log("There was an error while setting conditions: " + error)
+      },
+      async getProfile(){
+        const profileInfo = await ProfileService.getInfo(localStorage.getItem("username"))
+        if(profileInfo){
+          this.showEdit = false
+          this.profileInfo = profileInfo.data
         }
-    },
-    async saveAllergie(){
-        try{
-            await MedicalService.setAllergie(localStorage.getItem("username"), this.newAllergie)
-            alert('Alergia salva!')
-        } catch (error) {
-            console.log("There was an error while setting allergies: " + error)
-        }
+        console.log(this.profileInfo)
     }
 }
 }

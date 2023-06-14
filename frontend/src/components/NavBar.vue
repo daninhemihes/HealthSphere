@@ -8,7 +8,7 @@
                 <i class="bi bi-house"></i>
             </router-link>
 
-            <router-link to="/about" active-class="nav-btn-active" class="nav-btn">
+            <router-link to="/app/medicalrecord" active-class="nav-btn-active" class="nav-btn">
                 <i class="bi bi-clipboard"></i>
             </router-link>
 
