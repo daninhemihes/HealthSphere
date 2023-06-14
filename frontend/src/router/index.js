@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '../views/Layout.vue'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
+import ProfileFormView from '../views/ProfileFormView.vue'
 
 const routes = [
   {
@@ -22,6 +23,10 @@ const routes = [
         path: 'profile',
         component: HomeView,
       },
+      {
+        path: 'profileform',
+        component: ProfileFormView
+      }
     ],
   }
 ]
