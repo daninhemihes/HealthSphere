@@ -66,6 +66,32 @@ class ProfileTabService {
             return
         }
     }
+    async getEmergencyContact(username) {
+        try{
+            const response = await axios.get(`${API_URL}/contato_emergencia/${username}/`, {
+                username: username
+            });
+            console.log(response)
+            return response
+        } catch (error) {
+            console.error('Error while getting emergency contact: ', error);
+            return
+        }
+    }
+    async setEmergencyContact(user, data){
+        try{
+            const response = await axios.post(`${API_URL}/contato_emergencia/`, {
+                username: data.username,
+                name: data.name,
+                relationship: data.relationship,
+                phone: data.phone
+            });
+            return response
+        } catch (error) {
+            console.error('Error while setting emergency contact: ', error);
+            return
+        }
+    }
 }
 
 export default new ProfileTabService()
