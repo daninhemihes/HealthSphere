@@ -14,7 +14,7 @@ class ContatoEmergencia(APIView):
                 'relationship': cada_contato_emergencia.relationship,
                 'phone':cada_contato_emergencia.phone,
             })
-            return Response(retorno_dados, status=200)
+        return Response(retorno_dados, status=200)
 
     def post(self, request):
         data = request.data

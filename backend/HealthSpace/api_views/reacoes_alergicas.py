@@ -14,7 +14,8 @@ class ReacoesAlergicas(APIView):
                 'allergiesReactions': cada_reacao_alergica.allergiesReactions,
                 'notes':cada_reacao_alergica.notes,
             })
-            return Response(retorno_dados, status=200)
+        
+        return Response(retorno_dados, status=200)
 
     def post(self, request):
         data = request.data

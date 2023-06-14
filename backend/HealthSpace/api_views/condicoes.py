@@ -13,7 +13,7 @@ class CondicoesMedicas(APIView):
                 'medicalCondition': cada_condicao_medica.medicalCondition,
                 'notes':cada_condicao_medica.note,
             })
-            return Response(retorno_dados, status=200)
+        return Response(retorno_dados, status=200)
 
     def post(self, request):
         data = request.data
