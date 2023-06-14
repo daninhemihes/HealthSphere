@@ -4,8 +4,8 @@
             <img src="../assets/shadowLogo.png" alt="HealthSpaceLogo">
             <div id="wellcome-text">SEJA BEM-VINDO AO</div>
             <div id="logo-text">HEALTHSPACE</div>
-            <SignInForm v-if="signType == 0"></SignInForm>
-            <SignUpForm v-if="signType == 1"></SignUpForm>
+            <SignInForm v-if="signType == 0" @changeForm="changeForm()"></SignInForm>
+            <SignUpForm v-if="signType == 1" @changeForm="changeForm()"></SignUpForm>
         </div>
     </section>
   </template>
@@ -22,7 +22,18 @@ export default {
     },
     data(){
         return{
-            signType: 1,
+            signType: 0,
+        }
+    },
+    mounted() {
+        const username = localStorage.getItem("username")
+        if (username && username != '') this.$router.push("/app/home")
+    },
+    methods:{
+        async changeForm () {
+            console.log("changed form")
+            if (this.signType == 0) this.signType = 1
+            else this.signType = 0
         }
     }
 }

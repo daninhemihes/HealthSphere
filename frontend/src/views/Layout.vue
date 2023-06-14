@@ -17,7 +17,11 @@
     components: {
       NavBar,
       ProfileTab
-    }
+    },
+    mounted() {
+      const username = localStorage.getItem("username")
+      if (!username || username == '') this.$router.push("/")
+  },
   }
   </script>
   

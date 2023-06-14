@@ -2,15 +2,19 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '../views/Layout.vue'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
+import ProfileFormView from '../views/ProfileFormView.vue'
+import ContactsView from '../views/ContactsView.vue'
+import MedicalView from '../views/MedicalView.vue'
+import MedicalRecordView from '../views/MedicalRecordView.vue'
 
 const routes = [
   {
-    path: '/login',
+    path: '/',
     name: 'login',
     component: LoginView
   },
   {
-    path: '/',
+    path: '/app',
     name: 'Layout',
     component: Layout,
     children: [
@@ -19,9 +23,21 @@ const routes = [
         component: HomeView,
       },
       {
-        path: 'profile',
-        component: HomeView,
+        path: 'profileform',
+        component: ProfileFormView
       },
+      {
+        path: 'contacts',
+        component: ContactsView
+      },
+      {
+        path: 'medical',
+        component: MedicalView
+      },
+      {
+        path: 'medicalrecord',
+        component: MedicalRecordView
+      }
     ],
   }
 ]

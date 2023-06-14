@@ -1,50 +1,72 @@
 <template>
-    <form action="">
-        <label for="email">
-            Nome Completo
-            <input type="text">
+    <div class="loginForm">
+        <label for="username">
+            Usuário
+            <input type="text" v-model="username">
         </label>
         <label for="email">
             E-mail
-            <input type="text">
+            <input type="text" v-model="email">
         </label>
         <label for="password">
-            Senha
-            <input type="password">
+            Nova Senha
+            <input type="password" v-model="password">
         </label>
-        <button>CRIAR CONTA</button>
-    </form>
-    <div id="signup-btn">
-        OU
-        <button>CRIAR CONTA</button>
+        <button @click="createAccount()"> CRIAR CONTA</button>
+        <div id="signup-btn">
+            OU
+            <button @click="$emit('changeForm')">FAZER LOGIN</button>
+        </div>
     </div>
 
   </template>
   
 <script>
+import user from '../../services/user'
+import UserService from '../../services/user'
 
 export default {
-name: 'SignUpForm',
-components: {
+    name: 'SignUpForm',
+    components: {
 
-}
+    },
+    data(){
+        return{
+            username: '',
+            email: '',
+            password: ''
+        }
+    },
+    methods:{
+        async createAccount () {
+            const response = await UserService.register(this.username, this.email, this.password)
+            if (response && response.status == 201){
+                localStorage.setItem("username", this.username)
+                alert(`Usuário ${localStorage.getItem("username")} registrado!`)
+                this.$router.push("/app/home")
+            }
+            else{
+                alert('Não foi possível registrar o usuário.')
+            }
+        }
+    }
 }
 </script>
 
 <style scoped>
-    form{
+    .loginForm{
         margin: 60px 0px 20px 0px;
         display: flex;
         flex-direction: column;
     }
-    form label{
+    .loginForm label{
         display: flex;
         flex-direction: column;
         font-size: 20px;
         color: white;
         margin: 15px;
     }
-    form input{
+    .loginForm input{
         width: 415px;
         height: 55px;
         background: none;
@@ -53,14 +75,14 @@ components: {
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
         border-radius: 5px;
     }
-    form label a{
+    .loginForm label a{
         text-decoration: none;
         cursor: pointer;
         color: white;
         text-align: end;
         font-size: 16px;
     }
-    form button, #signup-btn button{
+    .loginForm button, #signup-btn button{
         width: 415px;
         height: 60px;
         margin: 15px;
@@ -71,7 +93,7 @@ components: {
         font-size: 20px;
         transition: 0.2s;
     }
-    form button:hover, #signup-btn button:hover{
+    .loginForm button:hover, #signup-btn button:hover{
         font-size: 17px;
     }
     #signup-btn{

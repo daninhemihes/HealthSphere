@@ -15,7 +15,7 @@ class FichaMedica(APIView):
         tabela_qrcode = get_object_or_404(tbQRcode, hash=hash)
         tabela_person = tbPerson.objects.filter(username=tabela_qrcode.username).first()
         retorno_front["dados_person"].append({
-            'usuario': tabela_person.username.pk,
+            'username': tabela_person.username.pk,
             'firstName':tabela_person.firstName,
             'lastName':tabela_person.lastName,
             'sex':tabela_person.sex,

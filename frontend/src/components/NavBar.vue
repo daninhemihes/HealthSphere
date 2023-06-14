@@ -4,28 +4,28 @@
             <img src="../assets/logo.png" alt="Healthspace Logo" style="max-width: 60px;">
         </router-link>
         <div class="nav-select">
-            <router-link to="/#" active-class="nav-btn-active" class="nav-btn">
+            <router-link to="/app/home" active-class="nav-btn-active" class="nav-btn">
                 <i class="bi bi-house"></i>
             </router-link>
 
-            <router-link to="/about" active-class="nav-btn-active" class="nav-btn">
+            <router-link to="/app/medicalrecord" active-class="nav-btn-active" class="nav-btn">
                 <i class="bi bi-clipboard"></i>
             </router-link>
 
-            <router-link to="/about" active-class="nav-btn-active" class="nav-btn">
-                <i class="bi bi-activity"></i>
+            <router-link to="/app/medical" active-class="nav-btn-active" class="nav-btn">
+                <i class="bi bi-lungs"></i>
             </router-link>
 
-            <router-link to="/about" active-class="nav-btn-active" class="nav-btn">
+            <router-link to="/app/contacts" active-class="nav-btn-active" class="nav-btn">
+                <i class="bi bi-people"></i>
+            </router-link>
+
+            <router-link to="/app/profileform" active-class="nav-btn-active" class="nav-btn">
                 <i class="bi bi-person"></i>
-            </router-link>
-
-            <router-link to="/about" active-class="nav-btn-active" class="nav-btn">
-                <i class="bi bi-gear"></i>
             </router-link>
         </div>
         <div class="nav-end">
-            <router-link to="/about" active-class="nav-btn-active" class="nav-btn">
+            <router-link @click="logout()" to="/" active-class="nav-btn-active" class="nav-btn">
                 <i class="bi bi-box-arrow-in-left" style="font-size: 25px;"></i>
             </router-link>
         </div>
@@ -35,6 +35,11 @@
 <script >
 export default {
   name: 'NavBar',
+  methods:{
+    logout(){
+        localStorage.setItem('username', '')
+    }
+  }
 
 }
 </script>

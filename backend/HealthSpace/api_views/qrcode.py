@@ -28,14 +28,11 @@ class QRcode(APIView):
     def post(self, request):
         if tbQRcode.objects.filter(username=request.data["username"]):
             return Response({'error':'QRcode já cadastrado'}, status=400) 
-        print("ate aqui")
+        
         data = request.data
         data['hash'] = gerador_de_hash(10)
 
-        print("ate aqui2")
-
         create_qr(data['hash'])
-        print("ate aqui3")
 
         with open(f'C:\\VSO\healthspace\\backend\\media\\{data["hash"]}.jpg', 'rb') as arquivo:
             data['qrcode'] = File(arquivo, name =f'{data["hash"]}.jpg')
@@ -47,3 +44,8 @@ class QRcode(APIView):
                 return Response(status=200)
         return Response(serializer.errors, status=400)
 
+    def delete(self, request):
+        QRcode = get_object_or_404(tbQRcode, username=request.data["username"])
+        QRcode.delete()
+        
+        return Response({'mesage':'Deletado com sucesso!'}, status=200)

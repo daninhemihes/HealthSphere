@@ -6,12 +6,12 @@
         <h2>Sua Saúde</h2>
       </div>
       <div class="banner-span">
-        <h4>Seu último checkup foi há 5 dias</h4>
+        <h4></h4>
       </div>
       <div class="banner-button">
-        <button>Iniciar Checkup</button>
-        <button>Ver Checkup</button>
-        <button>Consultas</button>
+        <button @click="this.$router.push('/app/medicalrecord')">Ver Ficha Médica</button>
+        <button @click="this.$router.push('/app/profileform')">Dados Pessoais</button>
+        <button @click="this.$router.push('/app/medical')">Condições Médicas</button>
       </div>
     </div>
   </div>
@@ -43,6 +43,9 @@ export default {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .banner-button{
     display: flex;
@@ -52,6 +55,11 @@ export default {
     background: rgba(217, 217, 217, 0.4);
     border: 0.5px solid #C2C2C2;
     backdrop-filter: blur(10px);
+    width: 34%;
+    height: 150px;
+  }
+  .banner-title, .banner-span{
+    margin: 50px;
   }
 
 </style>
