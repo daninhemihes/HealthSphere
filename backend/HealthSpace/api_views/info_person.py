@@ -41,11 +41,13 @@ class InfoPerson(APIView):
 
         return Response(status=201)
     
-    def put(self, request):
+    def put(self, request, username):
+        tabela_person = get_object_or_404(tbPerson, username=username)
         data = request.data
-        serializer = PersonSerializer(data=data)
+        serializer = PersonSerializer(tabela_person, data=data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.update(tabela_person, serializer.validated_data)
+            return Response(serializer.data)
         else:
             return Response(serializer._errors, status=400)
 
