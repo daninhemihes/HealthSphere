@@ -43,17 +43,29 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Relaçao</th>
-                        <th>Telefone</th>
+                        <th>Condição</th>
+                        <th>Notas</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr v-for="(contact, index) in emergencyContacts" :key="index">
-                        <td>{{ contact.name }}</td>
-                        <td>{{ contact.relationship }}</td>
-                        <td>{{ contact.phone }}</td>
-                    </tr> -->
+                    <tr v-for="(condition, index) in conditions" :key="index">
+                        <td>{{ condition.medicalCondition }}</td>
+                        <td>{{ condition.notes }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Alergia</th>
+                        <th>Notas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(allergy, index) in allergies" :key="index">
+                        <td>{{ allergy.allergiesReactions }}</td>
+                        <td>{{ allergy.notes }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -61,7 +73,6 @@
 </template>
 
 <script>  
-import ProfileService from '../services/profile'
 import MedicalService from '../services/medical'
 
 export default {
@@ -86,8 +97,8 @@ data(){
     }
 },
 async mounted() {
-    //await this.getCondition()
-    //await this.getAllergies()
+    await this.getCondition()
+    await this.getAllergies()
 },
 methods:{
     async getCondition(){
