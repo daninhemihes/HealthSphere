@@ -6,9 +6,10 @@ from HealthSpace.serializer import PersonSerializer
 
 
 class InfoPerson(APIView):
-    def get(self, request, pk):
-        dados_usuario = get_object_or_404(tbPerson, pk=pk)
-        return Response(dados_usuario, status=200)
+    def get(self, request, username):
+        dados_usuario = get_object_or_404(tbPerson, username=username)
+        data = list(dados_usuario.values())
+        return Response(data, status=200)
 
     def post(self, request):
         print("request", request.data)
