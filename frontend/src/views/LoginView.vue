@@ -25,6 +25,10 @@ export default {
             signType: 0,
         }
     },
+    mounted() {
+        const username = localStorage.getItem("username")
+        if (username && username != '') this.$router.push("/app/home")
+    },
     methods:{
         async changeForm () {
             console.log("changed form")
