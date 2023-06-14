@@ -112,15 +112,23 @@ data(){
 async mounted() {
     const profileInfo = await ProfileService.getInfo(localStorage.getItem("username"))
     console.log(profileInfo)
-    this.profileInfo = profileInfo
+    if(profileInfo){
+        this.existingData = true
+        this.profileInfo = profileInfo.data
+    }
 },
 methods:{
     async saveProfile(){
-        if(existingData){
+        if(this.existingData){
+            console.log(this.profileInfo)
             await ProfileService.updateInfo(localStorage.getItem("username"), this.profileInfo)
+            alert('Dados atualizados!')
+            this.$router.push("/")
         }
         else {
             await ProfileService.setInfo(localStorage.getItem("username"), this.profileInfo)
+            alert('Dados adicionados!')
+            this.$router.push("/")
         }
     }
 }

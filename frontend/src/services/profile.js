@@ -9,7 +9,7 @@ class ProfileTabService {
             });
             return response
         } catch (error) {
-            console.error('Error while logging in: ', error);
+            console.error('Error while getting profile info: ', error);
             return
         }
     }
@@ -41,7 +41,8 @@ class ProfileTabService {
     }
     async updateInfo(user, data){
         try{
-            const response = await axios.put(`${API_URL}/info_person/`, {
+            console.log(data)
+            const response = await axios.put(`${API_URL}/info_person/${user}/`, {
                 username: data.username,
                 firstName : data.firstName,
                 lastName : data.lastName,
