@@ -16,8 +16,6 @@ def compare_password(password,hash):
     password = bytes(password, "utf-8")
 
     if bcrypt.checkpw(password, hash):
-        print("passou")
         return True
     else:
-        print("passou F")
         return False

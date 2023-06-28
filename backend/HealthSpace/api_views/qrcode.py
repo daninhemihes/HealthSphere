@@ -38,8 +38,8 @@ class QRcode(APIView):
             data['qrcode'] = File(arquivo, name =f'{data["hash"]}.jpg')
 
             serializer = QRcodeSerializer(data=data)
+            
             if serializer.is_valid(raise_exception=True):
-                print('valido')
                 serializer.save()
                 return Response(status=200)
         return Response(serializer.errors, status=400)

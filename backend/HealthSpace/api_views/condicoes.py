@@ -25,3 +25,14 @@ class CondicoesMedicas(APIView):
 
         return Response(status=201)
     
+    def delete(self, request):
+        try:
+            tbMedicalConditions.objects.get(username=request.data["username"], pk=request.data["medicalCondition"]).delete()
+        except:
+            return Response(status=404)
+        
+        return Response(status=201)
+
+
+
+    

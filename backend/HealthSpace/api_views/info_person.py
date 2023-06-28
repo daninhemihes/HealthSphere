@@ -29,11 +29,11 @@ class InfoPerson(APIView):
         return Response(returno_dados, status=200)
 
     def post(self, request):
-        print("request", request.data)
         if tbPerson.objects.filter(username=request.data["username"]):
             return Response({"error":"Já possui registro"}, status=400)
         data = request.data
         serializer = PersonSerializer(data=data)
+        
         if serializer.is_valid():
             serializer.save()
         else:
@@ -47,8 +47,10 @@ class InfoPerson(APIView):
         serializer = PersonSerializer(tabela_person, data=data)
         if serializer.is_valid():
             serializer.update(tabela_person, serializer.validated_data)
-            return Response(serializer.data)
+            return Response(serializer.data, status=201)
         else:
             return Response(serializer._errors, status=400)
-
-        return Response(status=201)
+        
+    def delete(self, request):
+        get_object_or_404(tbPerson, username=request.data["username"]).delete()
+        return Response(status=200)

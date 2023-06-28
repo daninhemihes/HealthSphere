@@ -26,3 +26,10 @@ class ContatoEmergencia(APIView):
 
         return Response(status=201)
     
+    def delete(self, request):
+        try:
+            tbEmergencyContact.objects.get(username=request.data["username"], phone=request.data["phone"]).delete()
+        except:
+            return Response(status=404)
+        
+        return Response(status=201)

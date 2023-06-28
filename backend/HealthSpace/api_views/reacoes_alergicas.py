@@ -26,4 +26,11 @@ class ReacoesAlergicas(APIView):
             return Response(serializer._errors, status=400)
 
         return Response(status=201)
-    
+
+    def delete(self, request):
+        try:
+            tbAllergiesReactions.objects.get(username=request.data["username"], allergiesReactions=request.data["allergiesReactions"]).delete()
+        except:
+            return Response(status=404)
+        
+        return Response(status=201)    

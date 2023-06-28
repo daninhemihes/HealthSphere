@@ -54,5 +54,4 @@ class FichaMedica(APIView):
                 'allergiesReactions':cada_reacao.allergiesReactions,
                 'notes':cada_reacao.notes,
             })
-        print('hegou aqui', retorno_front)
         return Response(retorno_front, status=200)

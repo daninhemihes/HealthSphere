@@ -17,8 +17,6 @@ class RegisterUser(APIView):
         data = request.data
         data['password'] = create(request.data['password'])
 
-        print(data)
-
         serializer = UserSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
